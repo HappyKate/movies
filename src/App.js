@@ -1,13 +1,17 @@
 import React from "react";
 import './App.css';
-import Movies from "./data/movies";
+import Films from "./data/films";
+import movies from "./data/movies";
 
-function App() {
-  return (
-    <div className="App">
-      <Movies/>
-    </div>
-  );
+
+export default class App extends React.Component {
+    render() {
+
+        return (
+            <div className="App">
+                {movies.map(el => <Films{...el}/>)}
+                <Films/>
+            </div>
+        );
+    }
 }
-
-export default App;
