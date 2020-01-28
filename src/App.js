@@ -8,7 +8,7 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div className="App">
+            <div className="container">
                 {movies.map(el => <Films{...el}/>)}
                 <Films/>
             </div>
