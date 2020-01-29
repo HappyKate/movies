@@ -24,8 +24,13 @@ function App() {
   return (
     <div className="container">
       {list.map(el => (
-        <Film setElement={setElement} key={el.id} element={el} />
+        <div onClick={() => setElement(el)} className="row">
+          <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+            <Film key={el.id} element={el} />
+          </div>
+        </div>
       ))}
+
       {element && (
         <div className="card">
           <p>{element.year}</p>

@@ -1,15 +1,15 @@
 import React from "react";
 
-function Film({ element, setElement }) {
+function Film({ element }) {
   const { name, localized_name, rating } = element;
   return (
     <div>
       <div className="card mt-3 md-3">
         <div className="card-body">
           <div className="col">
-            <button className="card-title" onClick={() => setElement(element)}>
+            <h6 className="card-title">
               {localized_name}
-            </button>
+            </h6>
             <p className="card-text">{name}</p>
           </div>
           <div className="col">

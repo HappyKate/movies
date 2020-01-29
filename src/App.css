@@ -1,19 +1,1 @@
-.App {
-  text-align: center;
-}
-.img{
-  width: 250px;
-  height: 300px;
-}
-.card{
-  width: 50rem;
-}
-.card-img, .card-img-bottom, .card-img-left {
-  width: 200px;
-  height: 250px;
-}
-.card-body{
-  columns: 2;
-  text-align: center;
-}
 
