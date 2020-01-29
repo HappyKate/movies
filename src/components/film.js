@@ -1,20 +1,23 @@
 import React from "react";
 
-function Film({ name, year, localized_name, rating }) {
+function Film({ element, setElement }) {
+  const { name, localized_name, rating } = element;
   return (
-    <div className="card mt-3 md-3">
-      <div className="card-body">
-        <p>{year}</p>
-        <div className="col">
-          <h5 className="card-title">{localized_name}</h5>
-          <p className="card-text">{name}</p>
-        </div>
-        <div className="col">
-          <p>{rating}</p>
+    <div>
+      <div className="card mt-3 md-3">
+        <div className="card-body">
+          <div className="col">
+            <button className="card-title" onClick={() => setElement(element)}>
+              {localized_name}
+            </button>
+            <p className="card-text">{name}</p>
+          </div>
+          <div className="col">
+            <p>{rating}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
 export default Film;

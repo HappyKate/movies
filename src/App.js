@@ -5,6 +5,7 @@ import { fetchMovies } from "./api/movies";
 
 function App() {
   const [list, setList] = useState([]);
+  const [element, setElement] = useState(null);
 
   const fetch = async () => {
     try {
@@ -12,7 +13,7 @@ function App() {
       setList(data.films);
     } catch (e) {
       console.log(e);
-      alert('Api error');
+      alert("Api error");
     }
   };
 
@@ -23,8 +24,14 @@ function App() {
   return (
     <div className="container">
       {list.map(el => (
-        <Film key={el.id} {...el} />
+        <Film setElement={setElement} key={el.id} element={el} />
       ))}
+      {element && (
+        <div className="card">
+          <p>{element.year}</p>
+        </div>
+      )}
+      {element && <div onClick={() => setElement(null)}>Закрыть</div>}
     </div>
   );
 }
