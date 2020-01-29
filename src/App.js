@@ -1,17 +1,32 @@
-import React from "react";
-import './App.css';
-import Films from "./data/films";
-import movies from "./data/movies";
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Film from "./components/film";
+import { fetchMovies } from "./api/movies";
 
+function App() {
+  const [list, setList] = useState([]);
 
-export default class App extends React.Component {
-    render() {
-
-        return (
-            <div className="container">
-                {movies.map(el => <Films{...el}/>)}
-                <Films/>
-            </div>
-        );
+  const fetch = async () => {
+    try {
+      const data = await fetchMovies();
+      setList(data.films);
+    } catch (e) {
+      console.log(e);
+      alert('Api error');
     }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  return (
+    <div className="container">
+      {list.map(el => (
+        <Film key={el.id} {...el} />
+      ))}
+    </div>
+  );
 }
+
+export default App;

@@ -14,4 +14,6 @@
 }
 .card-body{
   columns: 2;
+  text-align: center;
 }
+
