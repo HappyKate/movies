@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./App.css";
 import Film from "./components/film";
 import { fetchMovies } from "./api/movies";
@@ -30,13 +31,33 @@ function App() {
           </div>
         </div>
       ))}
-
-      {element && (
-        <div className="card">
-          <p>{element.year}</p>
-        </div>
-      )}
-      {element && <div onClick={() => setElement(null)}>Закрыть</div>}
+      <Modal isOpen={!!element} toggle={() => setElement(null)}>
+        <ModalHeader toggle={() => setElement(null)}>
+          {element && <p> {element.localized_name}</p>}
+        </ModalHeader>
+        <ModalBody>
+          {element && (
+            <>
+              <div className="row">
+                <div className="col-md-6">
+                  <img className="col" src={element.image_url} alt={"..."} />
+                </div>
+                <div className="col-md-6">
+                  <p className="text-muted">{element.name}</p>
+                  <p>Год: {element.year}</p>
+                  <p>Рейтинг: {element.rating}</p>
+                </div>
+              </div>
+              <p className="mt-4 md-4">{element.description}</p>
+            </>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={() => setElement(null)}>
+            Закрыть
+          </Button>
+        </ModalFooter>
+      </Modal>
     </div>
   );
 }
