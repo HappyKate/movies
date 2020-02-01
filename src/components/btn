@@ -1,0 +1,22 @@
+import React, {useState} from "react";
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
+const Btn = ({element}) => {
+  const [setElement]=useState(null);
+  return (
+  <ButtonDropdown isOpen={!!element} toggle={() => setElement(null)}>
+    <DropdownToggle caret>
+      Button Dropdown
+    </DropdownToggle>
+    <DropdownMenu>
+      <DropdownItem header>{element.year}</DropdownItem>
+      <DropdownItem disabled>Action</DropdownItem>
+      <DropdownItem>Another Action</DropdownItem>
+      <DropdownItem divider/>
+      <DropdownItem>Another Action</DropdownItem>
+    </DropdownMenu>
+  </ButtonDropdown>
+  )
+};
+
+export default Btn;
