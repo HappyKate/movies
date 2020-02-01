@@ -32,7 +32,6 @@ function App() {
       alert("Api error");
     }
   };
-
   useEffect(() => {
     fetch();
   }, []);
