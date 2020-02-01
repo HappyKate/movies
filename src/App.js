@@ -40,6 +40,7 @@ function App() {
     return a - b;
   };
   const years = [...new Set(list.map(el => el.year))].sort(sortNumber);
+
   const sortRating = (a, b) => {
     if (ratingSort === "down") return b.rating - a.rating;
     return a.rating - b.rating;
