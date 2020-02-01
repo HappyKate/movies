@@ -49,46 +49,49 @@ function App() {
   return (
     <div className="container">
       <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-        <ButtonDropdown isOpen={yearsDropdown} toggle={toggleYearsDropdown}>
-          <DropdownToggle caret>Сортировка по годам</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem onClick={() => setYearsSort("up")}>
-              {yearsSort === "up" && "✓ "}По возрастанию
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem onClick={() => setYearsSort("down")}>
-              {yearsSort === "down" && "✓ "}По убыванию
-            </DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown>
-        <ButtonDropdown
-          className="ml-2"
-          isOpen={ratingDropdown}
-          toggle={toggleRatingDropdown}
-        >
-          <DropdownToggle caret>Сортировка по рейтингу</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem onClick={() => setRatingSort("up")}>
-              {ratingSort === "up" && "✓ "}По возрастанию
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem onClick={() => setRatingSort("down")}>
-              {ratingSort === "down" && "✓ "}По убыванию
-            </DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown>
+        <div className="row">
+          <div className="col text-center mt-3 md-3">
+            <ButtonDropdown isOpen={yearsDropdown} toggle={toggleYearsDropdown}>
+              <DropdownToggle caret>Сортировка по годам</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={() => setYearsSort("up")}>
+                  {yearsSort === "up" && "✓ "}По возрастанию
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={() => setYearsSort("down")}>
+                  {yearsSort === "down" && "✓ "}По убыванию
+                </DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </div>
+          <div className="col text-center mt-3 md-3">
+            <ButtonDropdown
+              isOpen={ratingDropdown}
+              toggle={toggleRatingDropdown}
+            >
+              <DropdownToggle caret>Сортировка по рейтингу</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={() => setRatingSort("up")}>
+                  {ratingSort === "up" && "✓ "}По возрастанию
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={() => setRatingSort("down")}>
+                  {ratingSort === "down" && "✓ "}По убыванию
+                </DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </div>
+        </div>
       </div>
       {years.map(year => (
         <Fragment key={year}>
-          <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-            <div className="card  mt-3 md-3">
-              <div className="card-body">
-                <div className="row">
-                  <div className="col">
-                    <h6 key={year} className="card-title text-center">
-                      {year}
-                    </h6>
-                  </div>
+          <div className="row">
+            <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+              <div className="card  mt-3 md-3">
+                <div className="card-body">
+                  <h6 key={year} className="card-title text-center">
+                    {year}
+                  </h6>
                 </div>
               </div>
             </div>
