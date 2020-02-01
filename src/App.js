@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   Button,
   Modal,
@@ -20,7 +20,9 @@ function App() {
   const [yearsDropdown, setYearsDropdown] = useState(false);
   const toggleYearsDropdown = () => setYearsDropdown(el => !el);
   const [yearsSort, setYearsSort] = useState("up");
-
+  const [ratingDropdown, setRatingDropdown] = useState(false);
+  const toggleRatingDropdown = () => setRatingDropdown(el => !el);
+  const [ratingSort, setRatingSort] = useState("up");
   const fetch = async () => {
     try {
       const data = await fetchMovies();
@@ -40,6 +42,7 @@ function App() {
   };
   const years = [...new Set(list.map(el => el.year))].sort(sortNumber);
   const sortRating = (a, b) => {
+    if (ratingSort === "down") return b.rating - a.rating;
     return a.rating - b.rating;
   };
 
@@ -58,9 +61,25 @@ function App() {
             </DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
+        <ButtonDropdown
+          className="ml-2"
+          isOpen={ratingDropdown}
+          toggle={toggleRatingDropdown}
+        >
+          <DropdownToggle caret>Сортировка по рейтингу</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem onClick={() => setRatingSort("up")}>
+              {ratingSort === "up" && "✓ "}По возрастанию
+            </DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem onClick={() => setRatingSort("down")}>
+              {ratingSort === "down" && "✓ "}По убыванию
+            </DropdownItem>
+          </DropdownMenu>
+        </ButtonDropdown>
       </div>
       {years.map(year => (
-        <>
+        <Fragment key={year}>
           <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
             <div className="card  mt-3 md-3">
               <div className="card-body">
@@ -78,13 +97,13 @@ function App() {
             .filter(el => el.year === year)
             .sort(sortRating)
             .map(el => (
-              <div onClick={() => setElement(el)} className="row">
+              <div key={el.id} onClick={() => setElement(el)} className="row">
                 <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-                  <Film key={el.id} element={el} />
+                  <Film element={el} />
                 </div>
               </div>
             ))}
-        </>
+        </Fragment>
       ))}
 
       <Modal isOpen={!!element} toggle={() => setElement(null)}>
