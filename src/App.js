@@ -44,7 +44,6 @@ function App() {
     if (ratingSort === "down") return b.rating - a.rating;
     return a.rating - b.rating;
   };
-
   return (
     <div className="container">
       <div className="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
